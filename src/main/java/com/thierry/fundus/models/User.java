@@ -1,9 +1,6 @@
 package com.thierry.fundus.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import net.minidev.json.annotate.JsonIgnore;
@@ -11,16 +8,17 @@ import net.minidev.json.annotate.JsonIgnore;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
+@Entity(name = "user_details")
 public class User {
     @Id
     @GeneratedValue
     private Integer id;
     @Size(min=4, message="Please enter a username with at least 10 characters")
+    @Column(unique=true)
     private String username;
     @Past
     private LocalDate birthDate;
-    @JsonIgnore
+//    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Request> requests;
 

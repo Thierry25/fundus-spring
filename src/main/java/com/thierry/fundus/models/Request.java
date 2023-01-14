@@ -1,15 +1,12 @@
 package com.thierry.fundus.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import net.minidev.json.annotate.JsonIgnore;
 
 
-@Entity
+@Entity(name = "requests")
 public class Request {
     @Id
     @GeneratedValue
@@ -20,7 +17,7 @@ public class Request {
     private String description;
     @Min(value=10, message = "The amount should be at least be 10 dollars")
     private Integer amount;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private User user;
 

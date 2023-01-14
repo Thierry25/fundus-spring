@@ -1,15 +1,16 @@
 package com.thierry.fundus.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
-import net.minidev.json.annotate.JsonIgnore;
 
 
 @Entity(name = "requests")
 public class Request {
     @Id
     @GeneratedValue
+    @JsonIgnore
     private Integer id;
     @Size(min=5, message="The title should contain at least 5 characters")
     private String title;

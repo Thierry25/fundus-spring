@@ -1,14 +1,16 @@
 package com.thierry.fundus.models;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
-import net.minidev.json.annotate.JsonIgnore;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity(name = "user_details")
+@JsonFilter(value = "UserFilter")
 public class User {
     @Id
     @GeneratedValue
@@ -18,7 +20,7 @@ public class User {
     private String username;
     @Past
     private LocalDate birthDate;
-//    @JsonIgnore
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Request> requests;
 
